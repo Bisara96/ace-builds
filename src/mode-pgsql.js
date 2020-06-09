@@ -526,10 +526,10 @@ var PythonHighlightRules = function() {
             regex: "\\s+"
         }, {
             token: "string",
-            regex: "'(.)*'"
+            regex: "'[^']*'"
         }, {
             token: "string",
-            regex: '"(.)*"'
+            regex: '"[^"]*"'
         }, {
             token: "function.support",
             regex: "(!s|!r|!a)"
@@ -1733,7 +1733,8 @@ oop.inherits(Mode, TextMode);
 }).call(Mode.prototype);
 
 exports.Mode = Mode;
-});                (function() {
+});
+                (function() {
                     window.require(["ace/mode/pgsql"], function(m) {
                         if (typeof module == "object" && typeof exports == "object" && module) {
                             module.exports = m;

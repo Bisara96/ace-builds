@@ -1319,7 +1319,8 @@ exports.setCore = function(e) {
     else
        emmet = e;
 };
-});                (function() {
+});
+                (function() {
                     window.require(["ace/ext/emmet"], function(m) {
                         if (typeof module == "object" && typeof exports == "object" && module) {
                             module.exports = m;

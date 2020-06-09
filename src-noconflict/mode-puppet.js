@@ -44,7 +44,7 @@ var PuppetHighlightRules = function () {
             },
             {
                 token: "multiline.comment.begin.puppet",
-                regex: '^\\s*\\/\\*\\s*$',
+                regex: '^\\s*\\/\\*',
                 push: "blockComment"
             },
             {
@@ -82,11 +82,7 @@ var PuppetHighlightRules = function () {
             }
         ],
         blockComment: [{
-            regex: "^\\s*\\/\\*\\s*$",
-            token: "multiline.comment.begin.puppet",
-            push: "blockComment"
-        }, {
-            regex: "^\\s*\\*\\/\\s*$",
+            regex: "\\*\\/",
             token: "multiline.comment.end.puppet",
             next: "pop"
         }, {
@@ -355,11 +351,15 @@ oop.inherits(Mode, TextMode);
 
 
 (function () {
+    this.lineCommentStart = "#";
+    this.blockComment = {start: "/*", end: "*/"};
+    
     this.$id = "ace/mode/puppet";
 }).call(Mode.prototype);
 
 exports.Mode = Mode;
-});                (function() {
+});
+                (function() {
                     ace.require(["ace/mode/puppet"], function(m) {
                         if (typeof module == "object" && typeof exports == "object" && module) {
                             module.exports = m;
