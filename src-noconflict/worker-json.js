@@ -1694,6 +1694,8 @@ oop.inherits(JsonWorker, Mirror);
 
     this.onUpdate = function() {
         var value = this.doc.getValue();
+        value = value.replace(/(["].*)({(system|global|flow)([.])([a-zA-Z_.]*)})(.*")/, "$1 $3_$5 $6");
+        value = value.replace(/{(system|global|flow)([.])([a-zA-Z_.]*)}/, '"$1_$3"');
         var errors = [];
         try {
             if (value)

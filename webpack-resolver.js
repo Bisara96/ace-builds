@@ -234,6 +234,7 @@ ace.config.setModuleUrl('ace/theme/tomorrow_night_eighties', require('file-loade
 ace.config.setModuleUrl('ace/theme/twilight', require('file-loader?esModule=false!./src-noconflict/theme-twilight.js'))
 ace.config.setModuleUrl('ace/theme/vibrant_ink', require('file-loader?esModule=false!./src-noconflict/theme-vibrant_ink.js'))
 ace.config.setModuleUrl('ace/theme/xcode', require('file-loader?esModule=false!./src-noconflict/theme-xcode.js'))
+ace.config.setModuleUrl('ace/mode/base_worker', require('file-loader?esModule=false!./src-noconflict/worker-base.js'))
 ace.config.setModuleUrl('ace/mode/coffee_worker', require('file-loader?esModule=false!./src-noconflict/worker-coffee.js'))
 ace.config.setModuleUrl('ace/mode/css_worker', require('file-loader?esModule=false!./src-noconflict/worker-css.js'))
 ace.config.setModuleUrl('ace/mode/html_worker', require('file-loader?esModule=false!./src-noconflict/worker-html.js'))
