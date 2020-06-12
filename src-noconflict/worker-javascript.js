@@ -11782,7 +11782,7 @@ oop.inherits(JavaScriptWorker, Mirror);
     this.onUpdate = function() {
         var value = this.doc.getValue();
         value = value.replace(/^#!.*\n/, "\n");
-        value = value.replace(/{(system|global|flow.)[a-zA-Z_.]*}/g, "$$$1");
+        value = value.replace(/{(system|global|flow.)[a-zA-Z0-9_.]*}/g, "$$$1");
         if (!value)
             return this.sender.emit("annotate", []);
 
