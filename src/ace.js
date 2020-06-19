@@ -13468,6 +13468,47 @@ Editor.$uid = 0;
         this.session.remove(this.getSelectionRange());
         this.clearSelection();
     };
+    this.removeMatchedVariableStartLeft = function(varName) {
+        console.debug("**starting autocomplete removal for ",varName);
+        var initalPos = this.selection.getCursor();
+        console.debug("**initial cursor pos row:"+initalPos.row+"col:"+initalPos.column);
+        var letter = '';
+        var count = 0;
+        do {
+            if(!this.selection.isEmpty()) {
+                console.debug("**already selected, count="+count);
+                this.clearSelection();
+            }
+            this.selection.selectLeft();
+            var range = this.getSelectionRange();
+            letter = this.session.getTextRange(range);
+            console.debug("**selected letter "+letter);
+            
+            if(letter === '}' || varName.toLowerCase().indexOf(letter.toLowerCase()) === -1) {
+                this.selection.selectRight();
+                break;
+            } else {
+                count++;
+            }
+        } while((initalPos.column-count) > 0);
+        console.debug("**selection end, leter count="+count);
+
+        var currentPos = this.selection.getCursor();
+        console.debug("**final cursor pos row:"+currentPos.row+"col:"+currentPos.column);
+
+        var selectionRange = new Range(initalPos.row, initalPos.column, currentPos.row, currentPos.column);
+        this.selection.setSelectionRange(selectionRange, true);
+        console.debug("**Selecting variable parts");
+
+        var range1 = this.getSelectionRange();
+        var word = this.session.getTextRange(range1);
+        console.debug("**Selected word: ",word);
+        
+        this.session.remove(this.getSelectionRange());
+        console.debug("**Removing variable parts");
+
+        this.clearSelection();
+    };
     this.removeToLineStart = function() {
         if (this.selection.isEmpty())
             this.selection.selectLineStart();
